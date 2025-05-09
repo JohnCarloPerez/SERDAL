@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #17C0CC;
+    --color-secondary: #6F9B9E;
+    --color-text-base: white;
+    --color-bg1: #1c2521;
+    --color-movingText: #EEEEEE;
+    --color-secondaryColor: white;
+    color: black;
+  }
+
+  * {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+}
+
+
+    .theme-0 {
+    --color-primary: #17C0CC;
+    --color-secondary: #6F9B9E;
+    --color-bg1: black;
+    --color-text-base: white;
+    --color-movingText: #EEEEEE;
+    --color-secondaryColor:black;
+    color: black; 
+  }
+
+
+  .theme-1 {
+    --color-primary: #090731;
+    --color-secondary: #161179;
+    --color-bg1: #0C0950;
+    --color-text-base: white;
+    --color-movingText: #211e58;
+    --color-secondaryColor: white;
+    color: white;
+  
+  }
+ 
+  .theme-2 {
+    --color-primary: #4B70F5;
+    --color-secondary: #2b53e2;
+    --color-bg1: white;
+    --color-text-base: white;
+    --color-movingText: #EEEEEE;
+    --color-secondaryColor: white;
+    color: black;
+  
+  }
+  
+  .theme-3 {
+    --color-primary: #B82132;
+    --color-secondary: #83111f;
+    --color-bg-primary: #D2665A;
+    --color-text-base: white;
+    --color-movingText: #EEEEEE;
+    --color-secondaryColor: white;
+    color: white;
+  
+  }
+
