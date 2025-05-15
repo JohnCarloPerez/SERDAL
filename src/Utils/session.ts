@@ -1,48 +1,98 @@
 
 export interface SessionData {
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+  img?: string;
+  role: string;
+  university: number;
   isLoggedIn: boolean;
+  APIToken?: string;
   isAdmin: boolean;
-  username?: string;
-  userID?: string;
 }
 
 export const SESSION_KEYS: Record<keyof SessionData, string> = {
+  id: 'id',
+  firstname: 'firstname',
+  lastname: 'lastname',
+  email: 'email',
+  img: 'img',
+  role: 'role',
+  university: 'university',
   isLoggedIn: 'isLoggedIn',
+  APIToken: 'APIToken',
   isAdmin: 'isAdmin',
-  username: 'username',
-  userID: 'userID',
 };
 
-// Session object for method chaining
 export const Session = {
   get: {
-    username(): string | null {
-      return localStorage.getItem(SESSION_KEYS.username);
+    id(): number | null {
+      const id = localStorage.getItem(SESSION_KEYS.id);
+      return id ? Number(id) : null;
+    },
+    firstname(): string | null {
+      return localStorage.getItem(SESSION_KEYS.firstname);
+    },
+    lastname(): string | null {
+      return localStorage.getItem(SESSION_KEYS.lastname);
+    },
+    email(): string | null {
+      return localStorage.getItem(SESSION_KEYS.email);
+    },
+    img(): string | null {
+      return localStorage.getItem(SESSION_KEYS.img);
+    },
+    role(): string | null {
+      return localStorage.getItem(SESSION_KEYS.role);
+    },
+    university(): number | null {
+      const universityId = localStorage.getItem(SESSION_KEYS.university)
+      return universityId ? Number(universityId) : null;
     },
     isLoggedIn(): boolean {
       return localStorage.getItem(SESSION_KEYS.isLoggedIn) === 'true';
     },
+    APIToken(): string | null {
+      return localStorage.getItem(SESSION_KEYS.APIToken);
+    },
     isAdmin(): boolean {
       return localStorage.getItem(SESSION_KEYS.isAdmin) === 'true';
-    },
-    userID(): string | null {
-      return localStorage.getItem(SESSION_KEYS.userID);
-    },
+    }
+
   },
 
   set: {
-    username(value: string): void {
-      localStorage.setItem(SESSION_KEYS.username, value);
+    id(value: number): void {
+      localStorage.setItem(SESSION_KEYS.id, String(value));
+    },
+    firstname(value: string): void {
+      localStorage.setItem(SESSION_KEYS.firstname, value);
+    },
+    lastname(value: string): void {
+      localStorage.setItem(SESSION_KEYS.lastname, value);
+    },
+    email(value: string): void {
+      localStorage.setItem(SESSION_KEYS.email, value);
+    },
+    img(value: string): void {
+      localStorage.setItem(SESSION_KEYS.img, value);
+    },
+    role(value: string): void {
+      localStorage.setItem(SESSION_KEYS.role, value);
+    },
+    university(value: number): void {
+      localStorage.setItem(SESSION_KEYS.university, String(value));
     },
     isLoggedIn(value: boolean): void {
       localStorage.setItem(SESSION_KEYS.isLoggedIn, String(value));
     },
-    isAdmin(value: boolean): void {
+    APIToken(value: string): void {
+      localStorage.setItem(SESSION_KEYS.APIToken, value);
+    },
+    isAdmin(value : boolean): void {
       localStorage.setItem(SESSION_KEYS.isAdmin, String(value));
-    },
-    userID(value: string): void {
-      localStorage.setItem(SESSION_KEYS.userID, value);
-    },
+    }
   },
 
   update<K extends keyof SessionData>(key: K, value: SessionData[K]): void {
@@ -56,8 +106,15 @@ export const Session = {
   clearAll() {
     Object.values(SESSION_KEYS).forEach((key) => localStorage.removeItem(key));
   },
-};
 
+  logAll(): void {
+  console.log('Session data:');
+  for (const key in SESSION_KEYS) {
+    console.log(`${key}:`, localStorage.getItem(SESSION_KEYS[key]));
+  }
+},
+
+};
 
 
 //#region 

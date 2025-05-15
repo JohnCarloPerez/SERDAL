@@ -30,7 +30,7 @@ function Header() {
   const [openDropdown, setOpenDropdown] = useState("");
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  //const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const toggleDropdown = (menu: string) => {
     setOpenDropdown((prev) => (prev === menu ? "" : menu));
@@ -76,7 +76,7 @@ function Header() {
     <>
       <div className="w-full flex items-center justify-between md:justify-center bg-bg1 text-white px-3 md:px-0 py-5 md:py-0 z-[999]">
         <div className="hidden md:block">
-          {!isAdmin && !isIndexPage && (
+          {!Session.get.isAdmin && !isIndexPage && (
             <Link
               className="block flex-shrink-0 w-full"
               to="https://uplb.edu.ph/"
@@ -400,7 +400,7 @@ function Header() {
         </div>
 
         <div className="hidden md:block">
-          {!isAdmin && !isIndexPage && (
+          {!Session.get.isAdmin && !isIndexPage && (
             <div className="flex md:mr-3">
               <div>
                 <Link

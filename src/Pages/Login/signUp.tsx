@@ -4,69 +4,24 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import Select, { StylesConfig } from "react-select";
 import LoginDisplay from "../../Components/LoginDisplay";
+import config from '../../AppConfig'
 
-interface UserForm {
-  Id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-  repassword: string;
-  university: number;
-}
 
-interface UserInfo {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  isActive: number;
-  role: string;
-  img: string;
-  createDateTime: string; // You can adjust the type if needed (e.g., Date)
-  university: number;
-}
-
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  Password: string;
-  IsActive: number;
-  role: string;
-  img: string;
-  createDateTime: string;
-  modifiedDateTime: string;
-  ModifiedBy: number;
-  university: number;
-}
-
-interface OTP {
-  Id: number;
-  UserId: OTP;
-}
-
-interface University {
-  id: number;
-  value: string;
-  label: string;
-  isDeleted: number;
-}
+import { UserForm } from "../../Interfaces/IUser";
+import { University } from "../../Interfaces/IUniversity";
+import { User } from "../../Interfaces/IUser";
 
 function SignUp () {
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [ismatchpass, setIsmatchpass] = useState<boolean>(true);
   const [ErrorMessage, setErrorMessage] = useState<string>("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPolicyOpen, setIsPolicyOpen] = useState(false);
 
-  const [OTP, setOTP] = useState("");
   const navigate = useNavigate();
+  const [university, setUniversity] = useState<University[]>([]);
   const [formData, setFormData] = useState<UserForm>({
     Id: 0,
     firstname: "",
@@ -77,7 +32,7 @@ function SignUp () {
     university: 0,
   });
 
-  const [university, setUniversity] = useState<University[]>([]);
+
 
   const [selectedOption, setSelectedOption] = useState<any>(null);
 
@@ -92,7 +47,7 @@ function SignUp () {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/Publication/University`, {
+        const response = await fetch(`${config.apiUrl}/api/Publication/University`, {
           method: "GET",
         });
         if (response.ok) {
@@ -170,7 +125,7 @@ function SignUp () {
     };
 
     try {
-      const response = await fetch(`${apiUrl}/api/Users/sendOTP`, {
+      const response = await fetch(`${config.apiUrl}/api/Users/sendOTP`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -182,8 +137,6 @@ function SignUp () {
         console.log("Form data submitted successfully!");
         swalLoading.close();
         const otp = await response.json();
-        setIsSubmitting(false);
-        setOTP(otp);
         OTPVerify(otp);
       } else {
         swalLoading.close();
@@ -217,7 +170,6 @@ function SignUp () {
       });
     } finally {
       swalLoading.close();
-      setIsSubmitting(false);
     }
   };
 
@@ -252,7 +204,7 @@ function SignUp () {
               university: selectedOption ? selectedOption.value : 0,
             };
 
-            const response = await fetch(`${apiUrl}/api/Users/Create`, {
+            const response = await fetch(`${config.apiUrl}/api/Users/Create`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(data),
@@ -261,7 +213,6 @@ function SignUp () {
             if (!response.ok) {
               const errorResponse = await response.json();
               if (response.status === 400) {
-                // Handle BadRequest (User already exists)
                 return Swal.fire({
                   icon: "error",
                   title: "Registration Failed",

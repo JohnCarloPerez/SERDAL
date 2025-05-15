@@ -19,20 +19,6 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const isAdmin = Session.get.isAdmin();
 
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const trigger = document.getElementById("sticky-trigger");
-      if (!trigger) return;
-
-      const triggerTop = trigger.getBoundingClientRect().top;
-      setIsSticky(triggerTop < 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     const scrollContainer = document.querySelector(".overflow-y-scroll");

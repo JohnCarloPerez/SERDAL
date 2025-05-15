@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from './Layout/layout'
 import { Route, Routes } from 'react-router-dom'
 import PageMeta from './Components/pageMeta'
@@ -14,7 +14,14 @@ import SignIn from './Pages/Login/signIn'
 import SignUp from './Pages/Login/signUp'
 import ResetPassword from './Pages/Login/resetPassword'
 
+import { Session} from './Utils/session'
+
 const App: React.FC = () => {
+
+  useEffect(() => {
+    console.log(Session.logAll());
+    Session.clearAll();
+  },[])
 
   return (
     <>
@@ -30,8 +37,8 @@ const App: React.FC = () => {
          <Route path="/ContactUs" element={<><PageMeta title="Contact Us" /><ContactUs /></>} />
 
          <Route path="/Auth/SignIn" element={<><PageMeta title="SignIn" /><SignIn /></>} />
-         <Route path="/Auth/SignUp" element={<><PageMeta title="SignIn" /><SignUp /></>} />
-         <Route path="/Auth/ResetPassword" element={<><PageMeta title="SignIn" /> <ResetPassword /> </>} />
+         <Route path="/Auth/SignUp" element={<><PageMeta title="SignUp" /><SignUp /></>} />
+         <Route path="/Auth/ResetPassword" element={<><PageMeta title="ResetPassword" /> <ResetPassword /> </>} />
         </Routes>
       </Layout>
     </>

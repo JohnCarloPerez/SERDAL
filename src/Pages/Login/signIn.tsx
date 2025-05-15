@@ -3,48 +3,19 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import LoginDisplay from "../../Components/LoginDisplay";
 
-const CLientID =
-  "660497554255-5bnd7flm92cbk9j1v0ni52qpi0hushfu.apps.googleusercontent.com";
-interface DecodedToken {
-  sub: string;
-  name: string;
-  email: string;
-  picture: string;
-}
-
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  Password: string;
-  IsActive: number;
-  role: string;
-  img: string;
-  createDateTime: string;
-  modifiedDateTime: string;
-  ModifiedBy: number;
-  university: number;
-}
+import { User } from "../../Interfaces/IUser";
+import { Session } from "../../Utils/session";
+import { number } from "framer-motion";
 
 interface UserForm {
   email: string;
   password: string;
 }
 
-interface data {
-  id: number;
-  otpCode: string;
-}
-
 function SignIn () {
   const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
-  const [ErrorMessage, setErrorMessage] = useState<string>("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [Loading, setIsLoading] = useState(false);
-
-  const [otp, setOTP] = useState<data>();
 
   const [formData, setFormData] = useState<UserForm>({
     email: "",
@@ -60,7 +31,6 @@ function SignIn () {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage("");
     setIsLoading(true);
 
     const data = {
@@ -73,9 +43,9 @@ function SignIn () {
       const response = await fetch(`${apiUrl}/api/Users/login`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Indicating that the data is in JSON format
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data), // Convert the JavaScript object to a JSON string
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
@@ -95,34 +65,49 @@ function SignIn () {
           createDateTime: userDetails.createDateTime,
           university: userDetails.university,
         };
-        localStorage.setItem("id", returnedUser.id.toString());
-        localStorage.setItem("firstname", returnedUser.firstName);
-        localStorage.setItem("lastname", returnedUser.lastName);
-        localStorage.setItem("email", returnedUser.email);
-        localStorage.setItem("img", returnedUser.img);
-        localStorage.setItem("role", returnedUser.role);
-        localStorage.setItem("university", returnedUser.university.toString());
-        localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("APIToken", Token.toString());
+
+
+        Session.set.id(returnedUser.id);
+        Session.set.firstname(returnedUser.firstName);
+        Session.set.lastname(returnedUser.lastName);
+        Session.set.email(returnedUser.email);
+        Session.set.img(returnedUser.img);
+        Session.set.role(returnedUser.role);
+        Session.set.university(returnedUser.university);
+        Session.set.isLoggedIn(true);
+        Session.set.APIToken(Token);
+
+        // localStorage.setItem("id", returnedUser.id.toString());
+        // localStorage.setItem("firstname", returnedUser.firstName);
+        // localStorage.setItem("lastname", returnedUser.lastName);
+        // localStorage.setItem("email", returnedUser.email);
+        // localStorage.setItem("img", returnedUser.img);
+        // localStorage.setItem("role", returnedUser.role);
+        // localStorage.setItem("university", returnedUser.university.toString());
+        // localStorage.setItem("isLoggedIn", "true");
+        // localStorage.setItem("APIToken", Token.toString());
 
         setIsLoading(false);
 
         if (returnedUser.role.toLowerCase() == "admin") {
-          localStorage.setItem("isAdmin", "true");
+          Session.set.isAdmin(true);
           navigate("/");
           window.location.reload();
         } else {
-          localStorage.setItem("isAdmin", "false");
-          const redirectSurvey = localStorage.getItem("surveyPath");
+          Session.set.isAdmin(false);
+          navigate("/");
 
-          if (redirectSurvey) {
-            localStorage.removeItem("surveyPath");
-            navigate(redirectSurvey);
-          } else {
-            navigate("/");
-          }
+          //... Waiting for requirements
+          // const redirectSurvey = localStorage.getItem("surveyPath");
+          // if (redirectSurvey) {
+          //   localStorage.removeItem("surveyPath");
+          //   navigate(redirectSurvey);
+          // } else {
+          //   navigate("/");
+          // }
         }
 
+        console.log(Session.get);
         window.location.reload();
       } else {
         setIsLoading(false);
