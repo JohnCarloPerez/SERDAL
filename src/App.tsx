@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log(Session.logAll());
-    Session.clearAll();
+    //Session.clearAll();
   },[])
 
   return (
@@ -39,6 +39,16 @@ const App: React.FC = () => {
          <Route path="/Auth/SignIn" element={<><PageMeta title="SignIn" /><SignIn /></>} />
          <Route path="/Auth/SignUp" element={<><PageMeta title="SignUp" /><SignUp /></>} />
          <Route path="/Auth/ResetPassword" element={<><PageMeta title="ResetPassword" /> <ResetPassword /> </>} />
+
+        {
+          Session.get.isAdmin() && Session.get.isLoggedIn() && (
+            <Route index path="/" element={<><PageMeta title="Dashboard" /><Home /></>} />
+          )
+        }
+
+
+
+
         </Routes>
       </Layout>
     </>

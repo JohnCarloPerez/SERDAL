@@ -110,7 +110,7 @@ export const Session = {
   logAll(): void {
   console.log('Session data:');
   for (const key in SESSION_KEYS) {
-    console.log(`${key}:`, localStorage.getItem(SESSION_KEYS[key]));
+    console.log(`${key}:`, localStorage.getItem(SESSION_KEYS[key as keyof typeof SESSION_KEYS]));
   }
 },
 
