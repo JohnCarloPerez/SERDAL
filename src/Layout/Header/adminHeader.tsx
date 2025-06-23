@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 //import DropdownUser from "./DropdownUser";
 import UPLB from "../../assets/logo.png";
 
-const Header2 = (props: {
+const AdminHeader = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
@@ -76,6 +76,7 @@ const Header2 = (props: {
           </ul>
 
           {/* <!-- User Area --> */}
+            User logo
           {/* <DropdownUser /> */}
           {/* <!-- User Area --> */}
         </div>
@@ -84,4 +85,4 @@ const Header2 = (props: {
   );
 };
 
-export default Header2;
+export default AdminHeader;

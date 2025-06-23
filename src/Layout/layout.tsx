@@ -13,7 +13,7 @@ import Header from "./Header/header";
 
 import { FaChevronUp } from "react-icons/fa";
 import Sidebar from "./Header/sidebar";
-import Header2 from "./Header/adminHeader";
+import AdminHeader from "./Header/adminHeader";
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
@@ -51,7 +51,9 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <div className="flex h-screen overflow-hidden dark:bg-boxdark-2 dark:text-bodydark">
-      {Session.get.isAdmin() && Session.get.isLoggedIn() && (<Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />)}
+      {Session.get.isAdmin() && Session.get.isLoggedIn() && (
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      )}
 
       <div className="relative flex flex-col flex-1 min-h-screen bg-white overflow-x-hidden overflow-y-scroll">
         {showScrollTop && (
@@ -71,8 +73,12 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
           </motion.button>
         )}
 
-
-        {Session.get.isAdmin() && Session.get.isLoggedIn() && (<Header2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />)}
+        {Session.get.isAdmin() && Session.get.isLoggedIn() && (
+          <AdminHeader
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
+        )}
 
         {/* {!isAdmin && isIndexPage && <LogoBanner />}
         {!isAdmin && <StickyHeader />}
