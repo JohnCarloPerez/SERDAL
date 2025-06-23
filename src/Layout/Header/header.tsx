@@ -20,7 +20,10 @@ interface data {
   img: string;
 }
 
-function Header() {
+const Header = (props: {
+  sidebarOpen: string | boolean | undefined;
+  setSidebarOpen: (arg0: boolean) => void;
+}) => {
   const location = useLocation();
   const [data, setData] = useState<data[]>([]);
 
@@ -38,12 +41,14 @@ function Header() {
 
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState); // Toggle the menu state
+    props.setSidebarOpen(menuOpen);
   };
 
   const handleResize = () => {
     if (window.innerWidth >= 768) {
       // Example: 768px is the breakpoint for "desktop"
       setMenuOpen(false); // Close the menu when the screen is large enough
+      props.setSidebarOpen(menuOpen);
     }
   };
 
@@ -459,6 +464,6 @@ function Header() {
       </div>
     </>
   );
-}
+};
 
 export default Header;

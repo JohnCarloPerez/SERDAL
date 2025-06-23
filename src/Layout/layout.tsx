@@ -6,17 +6,21 @@ import { Session } from "../Utils/session";
 import UP from "../assets/images/logos/UPLB_VIGHRColor_1.png";
 import CEM from "../assets/images/logos/CEM.png";
 import UPLB from "../assets/logo.png";
+
 import Footer from "./footer";
 import LogoBanner from "./Header/logoBanner";
 import Header from "./Header/header";
 
 import { FaChevronUp } from "react-icons/fa";
+import Sidebar from "./Header/sidebar";
+import Header2 from "./Header/adminHeader";
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
   const isIndexPage = location.pathname === "/";
 
   const isAdmin = Session.get.isAdmin();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -47,7 +51,8 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <div className="flex h-screen overflow-hidden dark:bg-boxdark-2 dark:text-bodydark">
-      {/* Sidebar logic here */}
+      {Session.get.isAdmin() && Session.get.isLoggedIn() && (<Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />)}
+
       <div className="relative flex flex-col flex-1 min-h-screen bg-white overflow-x-hidden overflow-y-scroll">
         {showScrollTop && (
           <motion.button
@@ -66,13 +71,34 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
           </motion.button>
         )}
 
+
+        {Session.get.isAdmin() && Session.get.isLoggedIn() && (<Header2 sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />)}
+
         {/* {!isAdmin && isIndexPage && <LogoBanner />}
         {!isAdmin && <StickyHeader />}
         {isAdmin && <AdminHeader />} */}
 
-        {!isAdmin && isIndexPage && (<div className="hidden md:block"> <LogoBanner /></div> )}
-        {!isAdmin && (<div className="sticky top-0 z-[9999]">  <Header /> </div> )}
-        {!isAdmin && isIndexPage && ( <div className="md:hidden"> <LogoBanner /> </div> )}
+        {!isAdmin && isIndexPage && (
+          <div className="hidden md:block">
+            {" "}
+            <LogoBanner />
+          </div>
+        )}
+        {!isAdmin && (
+          <div className="sticky top-0 z-[9999]">
+            {" "}
+            <Header
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />{" "}
+          </div>
+        )}
+        {!isAdmin && isIndexPage && (
+          <div className="md:hidden">
+            {" "}
+            <LogoBanner />{" "}
+          </div>
+        )}
 
         <main className="bg-white">
           <div className="mx-auto max-w-full">{children}</div>

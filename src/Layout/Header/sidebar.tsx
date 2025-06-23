@@ -37,6 +37,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     return () => document.removeEventListener('click', clickHandler);
   });
 
+
+useEffect(() => {
+  console.log(sidebarOpen);
+}, [sidebarOpen]);
+
+
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
@@ -106,12 +112,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               MENU
             </h3>
 
-            <ul className="mb-6 flex flex-col gap-1.5">              
+            <ul className="mb-6 flex flex-col gap-1.5 text-white">              
               {/* <!--Dashboard --> */}
               <li>
                 <NavLink
                   to="/"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('Dashboard') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -127,7 +133,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/admin/PublicationRequest"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('PublicationRequest') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -145,7 +151,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                <li>
                 <NavLink
                   to="/admin/datasets"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('Dataset') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -162,7 +168,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/admin/survey/form"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('Survey') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -178,7 +184,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                <li>
                 <NavLink
                   to="/admin/Users"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('Users') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -197,7 +203,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/admin/Management/Institution"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px] text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-[14px]  duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('Institution') && 'bg-graydark dark:bg-meta-4'
                   }`}
                   onClick={() => setSidebarOpen(!sidebarOpen)}
