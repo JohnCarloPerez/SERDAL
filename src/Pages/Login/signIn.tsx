@@ -66,7 +66,6 @@ function SignIn () {
           university: userDetails.university,
         };
 
-
         Session.set.id(returnedUser.id);
         Session.set.firstname(returnedUser.firstName);
         Session.set.lastname(returnedUser.lastName);
@@ -76,17 +75,6 @@ function SignIn () {
         Session.set.university(returnedUser.university);
         Session.set.isLoggedIn(true);
         Session.set.APIToken(Token);
-
-        // localStorage.setItem("id", returnedUser.id.toString());
-        // localStorage.setItem("firstname", returnedUser.firstName);
-        // localStorage.setItem("lastname", returnedUser.lastName);
-        // localStorage.setItem("email", returnedUser.email);
-        // localStorage.setItem("img", returnedUser.img);
-        // localStorage.setItem("role", returnedUser.role);
-        // localStorage.setItem("university", returnedUser.university.toString());
-        // localStorage.setItem("isLoggedIn", "true");
-        // localStorage.setItem("APIToken", Token.toString());
-
         setIsLoading(false);
 
         if (returnedUser.role.toLowerCase() == "admin") {
@@ -96,18 +84,8 @@ function SignIn () {
         } else {
           Session.set.isAdmin(false);
           navigate("/");
-
-          //... Waiting for requirements
-          // const redirectSurvey = localStorage.getItem("surveyPath");
-          // if (redirectSurvey) {
-          //   localStorage.removeItem("surveyPath");
-          //   navigate(redirectSurvey);
-          // } else {
-          //   navigate("/");
-          // }
         }
-
-        console.log(Session.get);
+        
         window.location.reload();
       } else {
         setIsLoading(false);

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 //import DropdownUser from "./DropdownUser";
 import UPLB from "../../assets/logo.png";
+import DropdownHeader from "./dropdownHeader";
 
 const AdminHeader = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -74,10 +75,8 @@ const AdminHeader = (props: {
             {/* <DropdownMessage /> */}
             {/* <!-- Chat Notification Area --> */}
           </ul>
-
           {/* <!-- User Area --> */}
-            User logo
-          {/* <DropdownUser /> */}
+          <DropdownHeader />
           {/* <!-- User Area --> */}
         </div>
       </div>

@@ -21,8 +21,8 @@ const App: React.FC = () => {
 
   useEffect(() => {
     console.log(Session.logAll());
-    Session.set.isLoggedIn(true);
-    Session.set.isAdmin(true);
+    //Session.set.isLoggedIn(true);
+    //Session.set.isAdmin(true);
     //Session.clearAll();
   },[])
 

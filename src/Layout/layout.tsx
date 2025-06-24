@@ -61,8 +61,8 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-[9999] p-3 rounded-full bg-primary text-white shadow-xl hover:bg-secondary"
             title="Scroll to Top"
-            initial={{ y: 0 }}
-            animate={{ y: [0, -5, 0] }}
+            initial={{y: 0}}
+            animate={{y: [0, -5, 0]}}
             transition={{
               duration: 1.5,
               repeat: Infinity,
@@ -86,23 +86,18 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
         {!isAdmin && isIndexPage && (
           <div className="hidden md:block">
-            {" "}
             <LogoBanner />
           </div>
         )}
         {!isAdmin && (
           <div className="sticky top-0 z-[9999]">
-            {" "}
-            <Header
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />{" "}
+            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           </div>
         )}
         {!isAdmin && isIndexPage && (
           <div className="md:hidden">
             {" "}
-            <LogoBanner />{" "}
+            <LogoBanner />
           </div>
         )}
 
@@ -110,7 +105,7 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => {
           <div className="mx-auto max-w-full">{children}</div>
         </main>
 
-        <Footer />
+        {!Session.get.isLoggedIn() && <Footer />}
       </div>
     </div>
   );
