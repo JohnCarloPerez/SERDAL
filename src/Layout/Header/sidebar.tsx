@@ -63,28 +63,13 @@ useEffect(() => {
   }, [sidebarExpanded]);
 
   return (
-    <aside
-      ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-65 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}
-    >
-      {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-4">
-        <div className='flex items-center'>
-          <NavLink to="/">
-            <img src={Logo} alt="Logo" height={40} width={40}/>
-          </NavLink>
-          <h1 className="text-[25px] text-white">SERDAL</h1>
-        </div>
-
-
-        <button
+    <>
+        {/* <button
           ref={trigger}
           onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-controls="sidebar"
-          aria-expanded={sidebarOpen}
-          className="block lg:hidden"
+          aria-expanded={!sidebarOpen}
+          className=" bg-red-200 h-10 -w-10 text-white p-3 z-[9999]"
         >
           <svg
             className="fill-current"
@@ -99,7 +84,21 @@ useEffect(() => {
               fill=""
             />
           </svg>
-        </button>
+        </button> */}
+
+    <aside ref={sidebar}  className={`fixed lg:static left-0 top-0 z-[100] flex h-screen w-65 flex-col overflow-y-auto overflow-x-hidden  bg-black duration-800 ease-linear dark:bg-boxdark
+            ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}lg:translate-x-0`}
+    >
+
+      {/* <!-- SIDEBAR HEADER --> */}
+      <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-4">
+        <div className='flex items-center'>
+          <NavLink to="/">
+            <img src={Logo} alt="Logo" height={40} width={40}/>
+          </NavLink>
+          <h1 className="text-[25px] text-white px-3">SERDAL</h1>
+        </div>
+
       </div>
       {/* <!-- SIDEBAR HEADER --> */}
 
@@ -108,9 +107,6 @@ useEffect(() => {
         <nav className="mt-1 py-1 px-4 ms:mt-9 sm:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
-            </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5 text-white">              
               {/* <!--Dashboard --> */}
@@ -227,6 +223,7 @@ useEffect(() => {
         {/* <!-- Sidebar Menu --> */}
       </div>
     </aside>
+    </>
   );
 };
 

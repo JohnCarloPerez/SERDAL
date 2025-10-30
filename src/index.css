@@ -68,3 +68,43 @@
   
   }
 
+
+
+  /* Make header inputs have visible borders */
+.p-datatable .p-datatable-thead > tr > th input,
+.p-datatable .p-datatable-thead > tr > th .p-inputtext {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* If using IconField, also style its inner input */
+.p-datatable .p-datatable-thead .p-inputtext.p-input-icon-right,
+.p-datatable .p-datatable-thead .p-inputtext.p-input-icon-left {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+/* Make MultiSelect in the table header have visible border and white bg */
+.p-datatable .p-column-filter .p-multiselect {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+
+  
+/* Standardize filter height for all input types */
+.p-datatable .p-column-filter .p-inputtext,
+.p-datatable .p-column-filter .p-dropdown,
+.p-datatable .p-column-filter .p-multiselect,
+.p-datatable .p-column-filter .p-input-icon-left,
+.p-datatable .p-column-filter .p-input-icon-right {
+    height: 2.5rem;      /* Set desired height */
+    min-height: 2.5rem;
+    padding-top: 0.25rem; /* Adjust padding for vertical centering */
+    padding-bottom: 0.25rem;
+    display: flex;
+    align-items: center;   /* Vertically center content */
+}

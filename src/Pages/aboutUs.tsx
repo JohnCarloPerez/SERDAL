@@ -28,7 +28,7 @@ function AboutUs() {
       const id = location.hash.replace("#", "");
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" }); // or just { behavior: "auto" }
+        el.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [location]);

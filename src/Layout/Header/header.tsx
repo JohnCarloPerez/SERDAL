@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-//import DropdownUser from './DropdownUser';
+import DropdownUser from './dropdownHeader';
 
 import { useState, useEffect } from "react";
 import servicesData from "../../assets/Data/Services/servicesData";
@@ -54,7 +54,7 @@ const Header = (props: {
 
   useEffect(() => {
     setData(servicesData);
-    setIsLoggedIn(Session.get.isAdmin);
+    setIsLoggedIn(Session.get.isLoggedIn);
   }, []);
 
   let LoginButton = (
@@ -72,10 +72,6 @@ const Header = (props: {
       </Link>
     </div>
   );
-
-  // if (isLoggedIn) {
-  //   // user = <div><DropdownUser /></div>;
-  // }
 
   return (
     <>
@@ -205,7 +201,7 @@ const Header = (props: {
 
                 <li>
                   <Link
-                    to="/publication"
+                    to="/Publication"
                     className="block px-4 py-2 hover:text-primary"
                     onClick={toggleMenu}
                   >
@@ -281,7 +277,7 @@ const Header = (props: {
                 </li>
 
                 <li>
-                  {!isLoggedIn ? <div>{LoginButton}</div> : <div>LoggedIn</div>}
+                  {!isLoggedIn ? <div>{LoginButton}</div> : <div><DropdownUser /></div>}
                 </li>
               </ul>
             </div>
@@ -338,7 +334,7 @@ const Header = (props: {
                 </li>
 
                 <li className="flex">
-                  <Link to="/publication" className="hover:text-primary">
+                  <Link to="/Publication" className="hover:text-primary">
                     {" "}
                     Publications{" "}
                   </Link>
@@ -397,7 +393,7 @@ const Header = (props: {
                 </li>
 
                 <li>
-                  {!isLoggedIn ? <div>{LoginButton}</div> : <div>LoggedIn</div>}
+                  {!isLoggedIn ? <div>{LoginButton}</div> : <div><DropdownUser/></div>}
                 </li>
               </ul>
             </div>

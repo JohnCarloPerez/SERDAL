@@ -48,7 +48,7 @@ function Dashboard() {
       {isAdmin ? (
         <div>
           <div className="p-5">
-            <div className="grid grid-cols-2 gap-1 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+            <div className="grid grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-1 md:gap-6 2xl:gap-7.5">
               <CardDataStats title="Survey" total={totalCount?.survey.toString()} rate="" >
                 <span className="text-blue-500 bg-blue text-[40px]">
                   <FontAwesomeIcon icon={faBook} />

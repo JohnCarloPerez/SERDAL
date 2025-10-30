@@ -769,10 +769,10 @@ const customStyles: StylesConfig = {
     fontSize: "1rem",
     paddingLeft: "10px",
     borderWidth: "2px",
-    borderColor: "6B7280", // Keep the border color consistent
-    boxShadow: state.isFocused ? "0 0 0 0px #2591DE" : "none", // Remove default blue focus outline
+    borderColor: "6B7280",
+    boxShadow: state.isFocused ? "0 0 0 0px #2591DE" : "none",
     "&:hover": {
-      borderColor: "6B7280", // Ensure hover border stays the same
+      borderColor: "6B7280",
     },
   }),
   option: (provided, state) => ({
@@ -782,7 +782,7 @@ const customStyles: StylesConfig = {
     color: state.isSelected ? "#fff" : "#000",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#2591DE", // Keep hover effect consistent
+      backgroundColor: "#2591DE",
       color: "#fff",
     },
   }),
